@@ -8,7 +8,7 @@ class Engine:
     def __init__(self, color):
         self._color = color
 
-    def move:
+    def move(self, board):
         raise NotImplementedError()
 
 # Picks a random legal move
@@ -52,7 +52,7 @@ class Brick(Minimizer):
 
 # Picks a move that immediately reduces your material. Breaks ties randomly
 class Napoleon(Minimizer):
-    self._table = {
+    _table = {
             chess.PAWN: 1,
             chess.KNIGHT: 3,
             chess.BISHOP: 3.25,

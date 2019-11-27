@@ -3,7 +3,7 @@
 import chess
 import sys
 import random
-import engine
+from engine import Brick, Gauss, Napoleon
 
 # python game.py <color> <engine_name>
 def usage():
@@ -15,12 +15,12 @@ def main():
         player_col = chess.BLACK
     
     # If they specified an engine
-    engine_type = engine.Brick
+    engine_type = Brick
     if len(sys.argv) > 2:
         engine_type = {
-            "Brick" : engine.Brick,
-            "Gauss" : engine.Gauss,
-            "Napoleon" : engine.Napoleon
+            "Brick" : Brick,
+            "Gauss" : Gauss,
+            "Napoleon" : Napoleon
         }[sys.argv[2]]
 
 
