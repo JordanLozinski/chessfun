@@ -3,26 +3,9 @@
 import chess
 import sys
 import random
+import engine
 
-class Engine:
-    def __init__(self, color):
-        self._color = color
-
-    def move(self, board):
-        cboard = chess.Board(fen=board.fen(promoted=board.promoted))
-        moves = list(cboard.legal_moves)
-        random.shuffle(moves)
-        minlen = sys.maxsize
-        minmove = moves[0]
-        for move in moves:
-            cboard.push(move)
-            if cboard.legal_moves.count() < minlen:
-                minlen = cboard.legal_moves.count()
-                minmove = move
-            cboard.pop()
-        return minmove
-
-# python game.py <color>
+# python game.py <color> <engine_name>
 def usage():
     pass
 
@@ -31,11 +14,21 @@ def main():
     if sys.argv[1] == 'B':
         player_col = chess.BLACK
     
-    engine = Engine(not player_col)
+    # If they specified an engine
+    engine_type = engine.Brick
+    if len(sys.argv) > 2:
+        engine_type = {
+            "Brick" : engine.Brick,
+            "Gauss" : engine.Gauss,
+            "Napoleon" : engine.Napoleon
+        }[sys.argv[2]]
+
+
+    engine = engine_type(not player_col)
     board = chess.Board()
     while not board.is_game_over():
         if board.turn == player_col:
-            print(board)
+            print(board if player_col == chess.WHITE else board.mirror())
             inmove = input("SAN move: ")
             try:
                 move = board.parse_san(inmove)
