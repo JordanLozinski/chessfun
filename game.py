@@ -2,7 +2,7 @@
 """game.py: Facilitates games between engines (or humans)."""
 import sys
 import chess
-from engine import Brick, Gauss, Napoleon, Alpha
+from engine import Brick, Gauss, Napoleon, Alpha, WeightedAlpha
 
 def usage():
     """Prints expected command line arguments."""
@@ -104,4 +104,4 @@ def player():
             except ValueError:
                 print("Engine attempted invalid move " + move.uci())
 
-headtohead([Brick, Gauss, Napoleon, Alpha], 100)
+headtohead([Brick, Gauss, Napoleon, Alpha, WeightedAlpha], 100)
