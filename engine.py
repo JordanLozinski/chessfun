@@ -115,13 +115,13 @@ class WeightedAlpha(Engine):
             for piece in board.pieces(piecetype, not self._color):
                 # Count the number of your attackers each of the opponent's
                 # pieces have.
-                num_attacking += _table[piece] * len(list(board.attackers(self._color, piece)))
+                num_attacking += self._table[piecetype] * len(list(board.attackers(self._color, piece)))
             
             # Iterate through your own pieces of piecetype
             for piece in board.pieces(piecetype, self._color):
                 # Count the number of your opponent's attackers each of your
                 # pieces have.
-                num_attacks += _table[piece] * len(list(board.attackers(not self._color, piece)))
+                num_attacks += self._table[piecetype] * len(list(board.attackers(not self._color, piece)))
         return num_attacks - num_attacking
 
     def move(self, board):

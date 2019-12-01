@@ -25,6 +25,7 @@ class TestAlphaEval(unittest.TestCase):
 
     def test_weighted_eval(self):
         a = WeightedAlpha(chess.WHITE)
+        board = chess.Board()
         """
         - R B R - - K -
         P - P - - P P P
